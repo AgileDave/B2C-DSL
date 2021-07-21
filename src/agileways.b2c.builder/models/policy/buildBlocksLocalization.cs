@@ -4,18 +4,18 @@ using agileways.b2c.builder.models.localization;
 namespace agileways.b2c.builder.models.policy
 {
     /// <remarks/>
-    [XmlTypeAttribute(AnonymousType = true, Namespace = "http://schemas.microsoft.com/online/cpim/schemas/2013/06")]
+    [XmlType(AnonymousType = true, Namespace = "http://schemas.microsoft.com/online/cpim/schemas/2013/06")]
     public class BuildingBlocksLocalization
     {
         /// <remarks/>
         public SupportedLanguages SupportedLanguages { get; set; }
 
         /// <remarks/>
-        [XmlElementAttribute("LocalizedResources")]
+        [XmlElement("LocalizedResources")]
         public LocalizedResources[] LocalizedResources { get; set; }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [XmlAttribute]
         public bool Enabled { get; set; }
 
         /// <remarks/>

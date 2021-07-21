@@ -4,20 +4,20 @@ namespace agileways.b2c.builder.models.common
 {
 
     /// <remarks/>
-    [XmlTypeAttribute(Namespace = "http://schemas.microsoft.com/online/cpim/schemas/2013/06")]
+    [XmlType(Namespace = "http://schemas.microsoft.com/online/cpim/schemas/2013/06")]
     public class EnumerationItem
     {
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [XmlAttribute]
         public string Text { get; set; }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [XmlAttribute]
         public string Value { get; set; }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [XmlAttribute]
         public bool SelectByDefault { get; set; }
 
         /// <remarks/>
@@ -25,7 +25,7 @@ namespace agileways.b2c.builder.models.common
         public bool SelectByDefaultSpecified { get; set; }
 
         /// <remarks/>
-        [XmlTextAttribute()]
+        [XmlText]
         public string Value1 { get; set; }
     }
 }

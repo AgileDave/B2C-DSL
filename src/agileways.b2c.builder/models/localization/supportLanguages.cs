@@ -4,23 +4,23 @@ using agileways.b2c.builder.models.common;
 namespace agileways.b2c.builder.models.localization
 {
     /// <remarks/>
-    [XmlTypeAttribute(Namespace = "http://schemas.microsoft.com/online/cpim/schemas/2013/06")]
+    [XmlType(Namespace = "http://schemas.microsoft.com/online/cpim/schemas/2013/06")]
     public class SupportedLanguages
     {
         /// <remarks/>
-        [XmlElementAttribute("SupportedLanguage")]
+        [XmlElement("SupportedLanguage")]
         public string[] SupportedLanguage { get; set; }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [XmlAttribute]
         public string DefaultLanguage { get; set; }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [XmlAttribute]
         public string PolicyLanguage { get; set; }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [XmlAttribute]
         public MergeBehavior MergeBehavior { get; set; }
 
         /// <remarks/>

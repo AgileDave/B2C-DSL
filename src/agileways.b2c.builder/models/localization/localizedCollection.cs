@@ -4,23 +4,23 @@ using agileways.b2c.builder.models.common;
 namespace agileways.b2c.builder.models.localization
 {
     /// <remarks/>
-    [XmlTypeAttribute(Namespace = "http://schemas.microsoft.com/online/cpim/schemas/2013/06")]
+    [XmlType(Namespace = "http://schemas.microsoft.com/online/cpim/schemas/2013/06")]
     public class LocalizedCollection
     {
         /// <remarks/>
-        [XmlElementAttribute("Item")]
+        [XmlElement("Item")]
         public EnumerationItem[] Item { get; set; }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [XmlAttribute]
         public string ElementType { get; set; }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [XmlAttribute]
         public string ElementId { get; set; }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [XmlAttribute]
         public string TargetCollection { get; set; }
     }
 

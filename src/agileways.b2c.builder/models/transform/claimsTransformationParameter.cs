@@ -4,19 +4,19 @@ using agileways.b2c.builder.models.common;
 namespace agileways.b2c.builder.models.transform
 {
     /// <remarks/>
-    [XmlTypeAttribute(Namespace = "http://schemas.microsoft.com/online/cpim/schemas/2013/06")]
+    [XmlType(Namespace = "http://schemas.microsoft.com/online/cpim/schemas/2013/06")]
     public class ClaimsTransformationParameter
     {
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [XmlAttribute]
         public string Id { get; set; }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [XmlAttribute]
         public DataType DataType { get; set; }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [XmlAttribute]
         public string Value { get; set; }
     }
 

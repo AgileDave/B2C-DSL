@@ -1,18 +1,18 @@
 using System.Xml.Serialization;
 using agileways.b2c.builder.models.predicate;
 
-namespace agileways.b2c.builder.models.policy
+namespace agileways.b2c.builder.models.claim
 {
     /// <remarks/>
-    [XmlTypeAttribute(Namespace = "http://schemas.microsoft.com/online/cpim/schemas/2013/06")]
+    [XmlType(Namespace = "http://schemas.microsoft.com/online/cpim/schemas/2013/06")]
     public class InputValidation
     {
         /// <remarks/>
-        [XmlElementAttribute("PredicateReferences")]
+        [XmlElement("PredicateReferences")]
         public PredicateReferences[] PredicateReferences { get; set; }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [XmlAttribute]
         public string Id { get; set; }
     }
 

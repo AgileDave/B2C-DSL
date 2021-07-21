@@ -4,24 +4,24 @@ namespace agileways.b2c.builder.models.common
 {
 
     /// <remarks/>
-    [XmlTypeAttribute(Namespace = "http://schemas.microsoft.com/online/cpim/schemas/2013/06")]
+    [XmlType(Namespace = "http://schemas.microsoft.com/online/cpim/schemas/2013/06")]
     public class Precondition
     {
 
         /// <remarks/>
-        [XmlElementAttribute("Value")]
+        [XmlElement("Value")]
         public string[] Value { get; set; }
 
         /// <remarks/>
-        [XmlElementAttribute("Action")]
+        [XmlElement("Action")]
         public PreconditionActionType[] Action { get; set; }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [XmlAttribute]
         public PreconditionType Type { get; set; }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [XmlAttribute]
         public bool ExecuteActionsIf { get; set; }
     }
 

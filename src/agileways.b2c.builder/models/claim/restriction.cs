@@ -5,18 +5,18 @@ namespace agileways.b2c.builder.models.claim
 {
 
     /// <remarks/>
-    [XmlTypeAttribute(Namespace = "http://schemas.microsoft.com/online/cpim/schemas/2013/06")]
+    [XmlType(Namespace = "http://schemas.microsoft.com/online/cpim/schemas/2013/06")]
     public class Restriction
     {
 
 
         /// <remarks/>
-        [XmlElementAttribute("Enumeration", typeof(EnumerationItem))]
-        [XmlElementAttribute("Pattern", typeof(Pattern))]
+        [XmlElement("Enumeration", typeof(EnumerationItem))]
+        [XmlElement("Pattern", typeof(Pattern))]
         public object[] Items { get; set; }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [XmlAttribute]
         public MergeBehavior MergeBehavior { get; set; }
 
         /// <remarks/>

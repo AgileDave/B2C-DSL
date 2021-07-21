@@ -3,15 +3,15 @@ using System.Xml.Serialization;
 namespace agileways.b2c.builder.models.display
 {
     /// <remarks/>
-    [XmlTypeAttribute(Namespace = "http://schemas.microsoft.com/online/cpim/schemas/2013/06")]
+    [XmlType(Namespace = "http://schemas.microsoft.com/online/cpim/schemas/2013/06")]
     public class DisplayControlClaimTypeReference
     {
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [XmlAttribute]
         public string ClaimTypeReferenceId { get; set; }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [XmlAttribute]
         public bool Required { get; set; }
 
         /// <remarks/>
@@ -19,11 +19,11 @@ namespace agileways.b2c.builder.models.display
         public bool RequiredSpecified { get; set; }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [XmlAttribute]
         public string DefaultValue { get; set; }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [XmlAttribute]
         public bool AlwaysUseDefaultValue { get; set; }
 
         /// <remarks/>

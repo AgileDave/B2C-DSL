@@ -4,16 +4,16 @@ namespace agileways.b2c.builder.models.predicate
 {
 
     /// <remarks/>
-    [XmlTypeAttribute(Namespace = "http://schemas.microsoft.com/online/cpim/schemas/2013/06")]
+    [XmlType(Namespace = "http://schemas.microsoft.com/online/cpim/schemas/2013/06")]
     public class Parameter
     {
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [XmlAttribute]
         public string Id { get; set; }
 
         /// <remarks/>
-        [XmlTextAttribute()]
+        [XmlText]
         public string Value { get; set; }
     }
 }

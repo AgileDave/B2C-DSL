@@ -3,23 +3,23 @@ using System.Xml.Serialization;
 namespace agileways.b2c.builder.models.localization
 {
     /// <remarks/>
-    [XmlTypeAttribute(Namespace = "http://schemas.microsoft.com/online/cpim/schemas/2013/06")]
+    [XmlType(Namespace = "http://schemas.microsoft.com/online/cpim/schemas/2013/06")]
     public class LocalizedString
     {
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [XmlAttribute]
         public string ElementType { get; set; }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [XmlAttribute]
         public string ElementId { get; set; }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [XmlAttribute]
         public string StringId { get; set; }
 
         /// <remarks/>
-        [XmlTextAttribute()]
+        [XmlText]
         public string Value { get; set; }
     }
 

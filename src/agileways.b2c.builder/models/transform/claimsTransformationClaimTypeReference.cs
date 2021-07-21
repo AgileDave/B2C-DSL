@@ -3,15 +3,22 @@ using System.Xml.Serialization;
 namespace agileways.b2c.builder.models.transform
 {
     /// <remarks/>
-    [XmlTypeAttribute(Namespace = "http://schemas.microsoft.com/online/cpim/schemas/2013/06")]
+    [XmlType(Namespace = "http://schemas.microsoft.com/online/cpim/schemas/2013/06")]
     public class ClaimsTransformationClaimTypeReference
     {
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [XmlAttribute]
         public string ClaimTypeReferenceId { get; set; }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [XmlAttribute]
         public string TransformationClaimType { get; set; }
+
+        public ClaimsTransformationClaimTypeReference() { }
+        public ClaimsTransformationClaimTypeReference(string id, string claimtype)
+        {
+            ClaimTypeReferenceId = id;
+            TransformationClaimType = claimtype;
+        }
     }
 }

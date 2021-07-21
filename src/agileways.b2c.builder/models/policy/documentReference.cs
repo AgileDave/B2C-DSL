@@ -2,13 +2,13 @@ using System.Xml.Serialization;
 
 namespace agileways.b2c.builder.models.policy
 {
-    [XmlTypeAttribute(Namespace = "http://schemas.microsoft.com/online/cpim/schemas/2013/06")]
+    [XmlType(Namespace = "http://schemas.microsoft.com/online/cpim/schemas/2013/06")]
     public class DocumentReference
     {
         public string DisplayName { get; set; }
-        [XmlElementAttribute(DataType = "anyURI")]
+        [XmlElement(DataType = "anyURI")]
         public string Url { get; set; }
-        [XmlAttributeAttribute()]
+        [XmlAttribute]
         public string Id { get; set; }
     }
 }

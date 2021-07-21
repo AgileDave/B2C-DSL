@@ -5,7 +5,7 @@ namespace agileways.b2c.builder.models.predicate
 
 
     /// <remarks/>
-    [XmlTypeAttribute(Namespace = "http://schemas.microsoft.com/online/cpim/schemas/2013/06")]
+    [XmlType(Namespace = "http://schemas.microsoft.com/online/cpim/schemas/2013/06")]
     public class Predicate
     {
 
@@ -13,19 +13,19 @@ namespace agileways.b2c.builder.models.predicate
         public string UserHelpText { get; set; }
 
         /// <remarks/>
-        [XmlArrayItemAttribute(IsNullable = false)]
+        [XmlArrayItem(IsNullable = false)]
         public Parameter[] Parameters { get; set; }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [XmlAttribute]
         public string Id { get; set; }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [XmlAttribute]
         public string Method { get; set; }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [XmlAttribute]
         public string HelpText { get; set; }
     }
 }

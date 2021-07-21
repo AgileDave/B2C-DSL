@@ -4,7 +4,7 @@ namespace agileways.b2c.builder.models.content
 {
 
     /// <remarks/>
-    [XmlTypeAttribute(Namespace = "http://schemas.microsoft.com/online/cpim/schemas/2013/06")]
+    [XmlType(Namespace = "http://schemas.microsoft.com/online/cpim/schemas/2013/06")]
     public class ContentDefinition
     {
 
@@ -18,14 +18,14 @@ namespace agileways.b2c.builder.models.content
         public string DataUri { get; set; }
 
         /// <remarks/>
-        [XmlArrayItemAttribute("Item", IsNullable = false)]
+        [XmlArrayItem("Item", IsNullable = false)]
         public metadataItemTYPE[] Metadata { get; set; }
 
         /// <remarks/>
         public ContentDefinitionLocalizedResourcesReferences LocalizedResourcesReferences { get; set; }
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
+        [XmlAttribute]
         public string Id { get; set; }
     }
 }
