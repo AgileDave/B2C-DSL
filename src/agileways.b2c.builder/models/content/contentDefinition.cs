@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace agileways.b2c.builder.models.content
@@ -19,7 +20,7 @@ namespace agileways.b2c.builder.models.content
 
         /// <remarks/>
         [XmlArrayItem("Item", IsNullable = false)]
-        public metadataItemTYPE[] Metadata { get; set; }
+        public List<MetadataItemType> Metadata { get; set; }
 
         /// <remarks/>
         public ContentDefinitionLocalizedResourcesReferences LocalizedResourcesReferences { get; set; }

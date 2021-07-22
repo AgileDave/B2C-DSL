@@ -1,19 +1,17 @@
 using System.Xml.Serialization;
 
-namespace agileways.b2c.builder.models.content
+namespace agileways.b2c.builder.models.journey
 {
-
     /// <remarks/>
     [XmlType(Namespace = "http://schemas.microsoft.com/online/cpim/schemas/2013/06")]
-    public class MetadataItemType
+    public partial class ClaimsExchange
     {
+        /// <remarks/>
+        [XmlAttribute]
+        public string Id { get; set; }
 
         /// <remarks/>
         [XmlAttribute]
-        public string Key { get; set; }
-
-        /// <remarks/>
-        [XmlText]
-        public string Value { get; set; }
+        public string TechnicalProfileReferenceId { get; set; }
     }
 }

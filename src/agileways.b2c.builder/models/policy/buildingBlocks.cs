@@ -13,7 +13,6 @@ namespace agileways.b2c.builder.models.policy
         [XmlArrayItem(IsNullable = false)]
         public List<ClaimType> ClaimsSchema { get; set; }
 
-
         /// <remarks/>
         [XmlArrayItem(IsNullable = false)]
         public List<Predicate> Predicates { get; set; }
@@ -45,8 +44,5 @@ namespace agileways.b2c.builder.models.policy
         /// <remarks/>
         [XmlArrayItem(IsNullable = false)]
         public List<DisplayControl> DisplayControls { get; set; }
-
-
-
     }
 }

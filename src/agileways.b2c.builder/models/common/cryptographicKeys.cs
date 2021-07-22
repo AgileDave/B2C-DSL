@@ -1,6 +1,6 @@
 using System.Xml.Serialization;
 
-namespace agileways.b2c.builder.models.techProfile
+namespace agileways.b2c.builder.models.common
 {
 
     /// <remarks/>
