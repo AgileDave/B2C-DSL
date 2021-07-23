@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml;
@@ -56,6 +57,12 @@ namespace agileways.b2c.builder.extensions
             return policy;
         }
 
+        public static TrustFrameworkPolicy SetClaimsProviders(this TrustFrameworkPolicy pol, params ClaimsProvider[] cps)
+        {
+            pol.ClaimsProviders = cps.ToList();
+            return pol;
+        }
+
         public static string Build(this TrustFrameworkPolicy pol)
         {
             var sb = new StringBuilder();
@@ -63,6 +70,15 @@ namespace agileways.b2c.builder.extensions
             XmlSerializer s = new XmlSerializer(typeof(TrustFrameworkPolicy));
             s.Serialize(w, pol);
             return sb.ToString();
+        }
+
+        public static string BuildToFile(this TrustFrameworkPolicy pol, string filePath)
+        {
+            FileStream fs = new FileStream($"{filePath}/{pol.PolicyId}.xml", FileMode.OpenOrCreate);
+            XmlWriter w = XmlWriter.Create(fs);
+            XmlSerializer s = new XmlSerializer(typeof(TrustFrameworkPolicy));
+            s.Serialize(w, pol);
+            return $"{filePath}/{pol.PolicyId}.xml";
         }
     }
 }

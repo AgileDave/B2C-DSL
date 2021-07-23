@@ -119,6 +119,30 @@ namespace agileways.b2c.builder.library.common.claims
                                     ) {8,16}$                                       # the length must be between 8 and 16 chars inclusive"
             };
         }
+
+        /// <remarks> The claim types newPassword and reenterPassword are considered special, please do not change the names. 
+        ///   The UI validates that the user correctly re-entered their password during account creation based on these 
+        ///   claim types.
+        /// </remarks>
+        public static ClaimType NewPassword
+        {
+            get => new ClaimType
+            {
+                Id = "newPassword",
+                DisplayName = "New Password",
+                DataType = DataType.@string,
+                UserHelpText = "Enter new password",
+                UserInputType = UserInputType.Password,
+                Restriction = new Restriction
+                {
+                    Items = new List<object> {
+                        new Pattern { RegularExpression = @"^((?=.*[a-z])(?=.*[A-Z])(?=.*\d)|(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])|(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9])|(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]))([A-Za-z\d@#$%^&amp;*\-_+=[\]{}|\\:',?/`~&quot;();!]|\.(?!@)){8,16}$",
+                                        HelpText = @"8-16 characters, containing 3 out of 4 of the following: Lowercase characters, uppercase characters, digits (0-9), and one or more of the following symbols: @ # $ % ^ &amp; * - _ + = [ ] { } | \ : ' , ? / ` ~ &quot; ( ) ; ."
+                                    }
+                    }
+                }
+            };
+        }
         public static ClaimType ReenterPassword
         {
             get => new ClaimType

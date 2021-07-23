@@ -12,7 +12,7 @@ namespace agileways.b2c.builder.models.claim
         public DataType DataType { get; set; }
         // [XmlIgnoreAttribute()]
         // public bool DataTypeSpecified { get; set; }
-        [XmlArrayItem("DefaultPartnerClaimTypes", IsNullable = false)]
+        [XmlArrayItem("Protocol", IsNullable = false)]
         public List<PartnerClaimTypesProtocol> DefaultPartnerClaimTypes { get; set; }
         public claimMask Mask { get; set; }
         public string AdminHelpText { get; set; }

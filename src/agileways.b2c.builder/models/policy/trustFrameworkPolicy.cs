@@ -44,7 +44,7 @@ namespace agileways.b2c.builder.models.policy
         public string StateTableName { get; set; }
         [XmlAttribute]
         public DeploymentModeType DeploymentMode { get; set; }
-        [XmlAttribute]
+        [XmlIgnore]
         public bool DeploymentModeSpecified { get; set; }
         public BuildingBlocks BuildingBlocks { get; set; }
         [XmlAttribute]

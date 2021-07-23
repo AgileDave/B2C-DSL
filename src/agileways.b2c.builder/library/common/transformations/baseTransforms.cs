@@ -35,7 +35,7 @@ namespace agileways.b2c.builder.library.common.transformations
                     new ClaimsTransformationParameter { Id = "randomGeneratorType", DataType = DataType.@string, Value = "GUID"},
                 },
                 OutputClaims = new List<ClaimsTransformationClaimTypeReference> {
-                    new ClaimsTransformationClaimTypeReference(BaseClaims.UpnUserName.Id, "inputClaim")
+                    new ClaimsTransformationClaimTypeReference(BaseClaims.UpnUserName.Id, "outputClaim")
                 }
             };
         }
