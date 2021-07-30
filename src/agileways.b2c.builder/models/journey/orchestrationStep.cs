@@ -6,7 +6,7 @@ namespace agileways.b2c.builder.models.journey
 {
     /// <remarks/>
     [XmlType(Namespace = "http://schemas.microsoft.com/online/cpim/schemas/2013/06")]
-    public partial class OrchestrationStep
+    public class OrchestrationStep
     {
         /// <remarks/>
         [XmlArrayItem("Precondition", IsNullable = false)]
@@ -14,7 +14,7 @@ namespace agileways.b2c.builder.models.journey
 
         /// <remarks/>
         [XmlElement("ClaimsProviderSelections")]
-        public List<ClaimsProviderSelections> ClaimsProviderSelections { get; set; }
+        public ClaimsProviderSelections ClaimsProviderSelections { get; set; }
 
         /// <remarks/>
         [XmlElement("ClaimsExchanges")]

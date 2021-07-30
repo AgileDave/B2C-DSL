@@ -21,7 +21,7 @@ namespace agileways.b2c.builder.library.common.techProfiles
                     new metadataItem { Key = "UserMessageIfClaimsPrincipalDoesNotExist", Value = "We can't seem to find your account"},
                     new metadataItem { Key = "UserMessageIfInvalidPassword", Value = "Your password is incorrect"},
                     new metadataItem { Key = "UserMessageIfOldPasswordUsed", Value = "Looks like you used an old password"},
-                    new metadataItem { Key = "ProviderName", Value = "https://sts.windows.net/<"},
+                    new metadataItem { Key = "ProviderName", Value = "https://sts.windows.net/"},
                     new metadataItem { Key = "METADATA", Value = "https://login.microsoftonline.com/{tenant}/.well-known/openid-configuration"},
                     new metadataItem { Key = "authorization_endpoint", Value = "https://login.microsoftonline.com/{tenant}/oauth2/token"},
                     new metadataItem { Key = "response_types", Value = "id_token"},

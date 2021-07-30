@@ -23,6 +23,10 @@ namespace agileways.b2c.builder.extensions
 
         public static ClaimsProvider AddTechnicalProfile(this ClaimsProvider cp, TechnicalProfile tp)
         {
+            if (cp.TechnicalProfiles == null)
+            {
+                cp.TechnicalProfiles = new List<TechnicalProfile>();
+            }
             cp.TechnicalProfiles.Add(tp);
             return cp;
         }

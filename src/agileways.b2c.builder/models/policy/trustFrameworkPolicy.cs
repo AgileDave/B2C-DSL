@@ -3,7 +3,7 @@ using System.Xml.Serialization;
 
 namespace agileways.b2c.builder.models.policy
 {
-    [XmlType(AnonymousType = true, Namespace = "http://schemas.microsoft.com/online/cpim/schemas/2013/06")]
+    [XmlRoot(Namespace = "http://schemas.microsoft.com/online/cpim/schemas/2013/06")]
     public class TrustFrameworkPolicy
     {
         public TrustFrameworkPolicy()
@@ -46,15 +46,15 @@ namespace agileways.b2c.builder.models.policy
         public DeploymentModeType DeploymentMode { get; set; }
         [XmlIgnore]
         public bool DeploymentModeSpecified { get; set; }
-        public BuildingBlocks BuildingBlocks { get; set; }
         [XmlAttribute]
         public string UserJourneyRecorderEndpoint { get; set; }
-        public RelyingParty RelyingParty { get; set; }
+        public BuildingBlocks BuildingBlocks { get; set; }
+        [XmlArrayItemAttribute(IsNullable = false)]
+        public List<ClaimsProvider> ClaimsProviders { get; set; }
         [XmlArrayItemAttribute(IsNullable = false)]
         public List<UserJourney> UserJourneys { get; set; }
         [XmlArrayItemAttribute(IsNullable = false)]
         public List<SubJourney> SubJourneys { get; set; }
-        [XmlArrayItemAttribute(IsNullable = false)]
-        public List<ClaimsProvider> ClaimsProviders { get; set; }
+        public RelyingParty RelyingParty { get; set; }
     }
 }

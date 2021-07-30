@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace agileways.b2c.builder.models.common
@@ -10,11 +11,11 @@ namespace agileways.b2c.builder.models.common
 
         /// <remarks/>
         [XmlElement("Value")]
-        public string[] Value { get; set; }
+        public List<string> Value { get; set; }
 
         /// <remarks/>
         [XmlElement("Action")]
-        public PreconditionActionType[] Action { get; set; }
+        public PreconditionActionType Action { get; set; }
 
         /// <remarks/>
         [XmlAttribute]
