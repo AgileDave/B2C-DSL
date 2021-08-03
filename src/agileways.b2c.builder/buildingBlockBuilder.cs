@@ -15,6 +15,16 @@ namespace agileways.b2c.builder.extensions
             return new BuildingBlocks();
         }
 
+        public static BuildingBlocks AddClaims(this BuildingBlocks bb, params ClaimType[] claims)
+        {
+            if (bb.ClaimsSchema == null)
+            {
+                bb.ClaimsSchema = new List<ClaimType>();
+            }
+
+            bb.ClaimsSchema.AddRange(claims);
+            return bb;
+        }
         public static BuildingBlocks AddClaimType(this BuildingBlocks bb, ClaimType claim)
         {
             if (bb.ClaimsSchema == null)
@@ -108,6 +118,16 @@ namespace agileways.b2c.builder.extensions
                 bb.ClaimsTransformations = new List<ClaimsTransformation>();
             }
             bb.ClaimsTransformations.Add(ct);
+            return bb;
+        }
+
+        public static BuildingBlocks AddClaimsTransformations(this BuildingBlocks bb, params ClaimsTransformation[] cts)
+        {
+            if (bb.ClaimsTransformations == null)
+            {
+                bb.ClaimsTransformations = new List<ClaimsTransformation>();
+            }
+            bb.ClaimsTransformations.AddRange(cts);
             return bb;
         }
 
