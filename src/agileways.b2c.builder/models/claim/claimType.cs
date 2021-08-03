@@ -19,8 +19,8 @@ namespace agileways.b2c.builder.models.claim
         public string UserHelpText { get; set; }
         [XmlElement]
         public UserInputType UserInputType { get; set; }
-        // [XmlIgnoreAttribute()]
-        // public bool UserInputTypeSpecified { get; set; }
+        [XmlIgnoreAttribute()]
+        public bool UserInputTypeSpecified { get; set; }
         public Restriction Restriction { get; set; }
         public InputValidationReference InputValidationReference { get; set; }
         public PredicateValidationReference PredicateValidationReference { get; set; }

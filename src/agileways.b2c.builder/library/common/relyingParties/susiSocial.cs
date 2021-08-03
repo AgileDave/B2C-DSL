@@ -20,13 +20,13 @@ namespace agileways.b2c.builder.library.common.relyingParties
                 },
                 TechnicalProfile = TechnicalProfileBuilder.Init("PolicyProfile", "PolicyProfile", ProtocolName.OpenIdConnect)
                                     .SetSubjectNaming(BaseClaims.Subject.Id)
-                                    .AddOutputClaim(BaseClaims.DisplayName.Id)
-                                    .AddOutputClaim(BaseClaims.GivenName.Id)
-                                    .AddOutputClaim(BaseClaims.Surname.Id)
-                                    .AddOutputClaim(BaseClaims.Email.Id)
-                                    .AddOutputClaim(BaseClaims.ObjectId.Id, "sub")
-                                    .AddOutputClaim(BaseClaims.IdentityProvider.Id, defaultValue: "local")
-                                    .AddOutputClaim(BaseClaims.TenantId.Id, defaultValue: "{Policy:TenantObjectId}", alwaysUseDefaultValue: true)
+                                    .ReturnsClaim(BaseClaims.DisplayName)
+                                    .ReturnsClaim(BaseClaims.GivenName)
+                                    .ReturnsClaim(BaseClaims.Surname)
+                                    .ReturnsClaim(BaseClaims.Email)
+                                    .ReturnsClaim(BaseClaims.ObjectId, "sub")
+                                    .ReturnsClaim(BaseClaims.IdentityProvider, defaultValue: "local")
+                                    .ReturnsClaim(BaseClaims.TenantId, defaultValue: "{Policy:TenantObjectId}", alwaysUseDefaultValue: true)
             };
         }
 
@@ -40,8 +40,8 @@ namespace agileways.b2c.builder.library.common.relyingParties
                 },
                 TechnicalProfile = TechnicalProfileBuilder.Init("PolicyProfile", "PolicyProfile", ProtocolName.OpenIdConnect)
                                     .SetSubjectNaming(BaseClaims.Subject.Id)
-                                    .AddOutputClaim(BaseClaims.ObjectId.Id, "sub")
-                                    .AddOutputClaim(BaseClaims.TenantId.Id, defaultValue: "{Policy:TenantObjectId}", alwaysUseDefaultValue: true)
+                                    .ReturnsClaim(BaseClaims.ObjectId, "sub")
+                                    .ReturnsClaim(BaseClaims.TenantId, defaultValue: "{Policy:TenantObjectId}", alwaysUseDefaultValue: true)
             };
         }
 
@@ -55,9 +55,9 @@ namespace agileways.b2c.builder.library.common.relyingParties
                 },
                 TechnicalProfile = TechnicalProfileBuilder.Init("PolicyProfile", "PolicyProfile", ProtocolName.OpenIdConnect)
                                     .SetSubjectNaming(BaseClaims.Subject.Id)
-                                    .AddOutputClaim(BaseClaims.Email.Id)
-                                    .AddOutputClaim(BaseClaims.ObjectId.Id, "sub")
-                                    .AddOutputClaim(BaseClaims.TenantId.Id, defaultValue: "{Policy:TenantObjectId}", alwaysUseDefaultValue: true)
+                                    .ReturnsClaim(BaseClaims.Email)
+                                    .ReturnsClaim(BaseClaims.ObjectId, "sub")
+                                    .ReturnsClaim(BaseClaims.TenantId, defaultValue: "{Policy:TenantObjectId}", alwaysUseDefaultValue: true)
             };
         }
     }

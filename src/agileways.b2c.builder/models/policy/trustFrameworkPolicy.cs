@@ -4,7 +4,7 @@ using System.Xml.Serialization;
 namespace agileways.b2c.builder.models.policy
 {
     [XmlRoot(Namespace = "http://schemas.microsoft.com/online/cpim/schemas/2013/06")]
-    public class TrustFrameworkPolicy
+    public sealed class TrustFrameworkPolicy
     {
         public TrustFrameworkPolicy()
         {

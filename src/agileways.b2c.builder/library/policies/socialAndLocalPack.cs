@@ -11,7 +11,6 @@ using agileways.b2c.builder.library.common.transformations;
 using agileways.b2c.builder.models.claim;
 using agileways.b2c.builder.models.content;
 using agileways.b2c.builder.models.policy;
-using agileways.b2c.builder.models.techProfile;
 
 namespace agileways.b2c.builder.library.policies
 {
@@ -100,8 +99,8 @@ namespace agileways.b2c.builder.library.policies
                                                     .AddTechnicalProfile(TechnicalProfileBuilder.Init("login-NonInteractive")
                                                                             .AddMetadata("client_id", proxyIefAppId)
                                                                             .AddMetadata("IdTokenAudience", iefAppId)
-                                                                            .AddInputClaim(BaseClaims.ClientId.Id, defaultValue: proxyIefAppId)
-                                                                            .AddInputClaim(BaseClaims.ResourceId.Id, "resource", defaultValue: iefAppId)),
+                                                                            .AcceptsClaim(BaseClaims.ClientId, defaultValue: proxyIefAppId)
+                                                                            .AcceptsClaim(BaseClaims.ResourceId, "resource", defaultValue: iefAppId)),
                                                     ClaimsProviderBuilder.Init("Azure Active Directory", "")
                                                     .AddTechnicalProfile(TechnicalProfileBuilder.Init("AAD-Common")
                                                                             .AddMetadata("ClientId", extensionAppId)

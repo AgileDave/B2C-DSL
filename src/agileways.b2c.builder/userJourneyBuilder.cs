@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using agileways.b2c.builder.library.common.clientDefinitions;
 using agileways.b2c.builder.models.journey;
 using agileways.b2c.builder.models.policy;
 
@@ -30,6 +31,35 @@ namespace agileways.b2c.builder.extensions
             uj.ClientDefinition = new UserJourneyClientDefinition
             {
                 ReferenceId = def.Id
+            };
+            return uj;
+        }
+
+        public static UserJourney AddOrchestrationStep(this UserJourney uj, OrchestrationStep step, bool inferOrder = true)
+        {
+
+            if (uj.OrchestrationSteps == null)
+            {
+                uj.OrchestrationSteps = new List<OrchestrationStep>();
+            }
+
+            int stepOrder = uj.OrchestrationSteps.Count + 1;
+
+            if (inferOrder)
+            {
+                step.Order = stepOrder;
+            }
+
+            uj.OrchestrationSteps.Add(step);
+
+            return uj;
+        }
+
+        public static UserJourney UsingDefaultWebClientDefinition(this UserJourney uj)
+        {
+            uj.ClientDefinition = new UserJourneyClientDefinition
+            {
+                ReferenceId = BaseClientDefinitions.DefaultWeb.Id
             };
             return uj;
         }

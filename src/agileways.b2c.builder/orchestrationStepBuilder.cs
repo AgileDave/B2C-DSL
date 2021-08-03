@@ -1,39 +1,78 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using agileways.b2c.builder.library.common.techProfiles;
+using agileways.b2c.builder.models.claim;
 using agileways.b2c.builder.models.common;
+using agileways.b2c.builder.models.content;
 using agileways.b2c.builder.models.journey;
+using agileways.b2c.builder.models.techProfile;
 
 namespace agileways.b2c.builder.extensions
 {
     public static class OrchestrationStepBuilder
     {
 
-        public static OrchestrationStep Init(int order, OrchestrationStepType type)
+        public static OrchestrationStep AsClaimsExchange { get => new OrchestrationStep { Type = OrchestrationStepType.ClaimsExchange }; }
+        public static OrchestrationStep AsJwtIssuer
+        {
+            get => new OrchestrationStep
+            {
+                Type = OrchestrationStepType.SendClaims,
+                CpimIssuerTechnicalProfileReferenceId = BaseTokenIssuerTechnicalProfiles.JwtIssuer.Id
+            };
+        }
+        public static OrchestrationStep AsCombinedSignInSignUp { get => new OrchestrationStep { Type = OrchestrationStepType.CombinedSignInAndSignUp }; }
+
+        public static OrchestrationStep UsingContentDefinition(this OrchestrationStep step, ContentDefinition definition)
+        {
+            step.ContentDefinitionReferenceId = definition.Id;
+            return step;
+        }
+
+        public static OrchestrationStep Init(OrchestrationStepType type)
         {
             return new OrchestrationStep
             {
-                Order = order,
                 Type = type
             };
         }
 
-        public static OrchestrationStep Init(int order, OrchestrationStepType type, string contentDefinitionRefId)
+        public static OrchestrationStep Init(OrchestrationStepType type, ContentDefinition contentDefinition)
         {
             return new OrchestrationStep
             {
-                Order = order,
                 Type = type,
-                ContentDefinitionReferenceId = contentDefinitionRefId
+                ContentDefinitionReferenceId = contentDefinition.Id
             };
         }
 
-        public static OrchestrationStep InitIssuerStep(int order, OrchestrationStepType type, string issuerTechnicalRefId)
+        public static OrchestrationStep Init(OrchestrationStepType type, ContentDefinition contentDefinition, int order)
         {
             return new OrchestrationStep
             {
                 Order = order,
                 Type = type,
-                CpimIssuerTechnicalProfileReferenceId = issuerTechnicalRefId
+                ContentDefinitionReferenceId = contentDefinition.Id
+            };
+        }
+
+        public static OrchestrationStep InitIssuerStep(OrchestrationStepType type, TechnicalProfile issuer)
+        {
+            return new OrchestrationStep
+            {
+                Type = type,
+                CpimIssuerTechnicalProfileReferenceId = issuer.Id
+            };
+        }
+
+        public static OrchestrationStep InitIssuerStep(OrchestrationStepType type, TechnicalProfile issuer, int order)
+        {
+            return new OrchestrationStep
+            {
+                Order = order,
+                Type = type,
+                CpimIssuerTechnicalProfileReferenceId = issuer.Id
             };
         }
 
@@ -64,7 +103,7 @@ namespace agileways.b2c.builder.extensions
             return step;
         }
 
-        public static OrchestrationStep AddClaimsExchange(this OrchestrationStep step, string id, string technicalProfileRefId)
+        public static OrchestrationStep AddClaimsExchange(this OrchestrationStep step, string id, TechnicalProfile technicalProfile)
         {
             if (step.ClaimsExchanges == null)
             {
@@ -75,7 +114,7 @@ namespace agileways.b2c.builder.extensions
             step.ClaimsExchanges.ClaimsExchange.Add(new ClaimsExchange
             {
                 Id = id,
-                TechnicalProfileReferenceId = technicalProfileRefId
+                TechnicalProfileReferenceId = technicalProfile.Id
             });
 
             return step;
@@ -101,6 +140,107 @@ namespace agileways.b2c.builder.extensions
                 Value = values.ToList()
             });
 
+            return step;
+        }
+
+        public static OrchestrationStep WithClaimsEqualsPrecondition(this OrchestrationStep step,
+                                                                    bool executeActionIf = true,
+                                                                    PreconditionActionType actionType = PreconditionActionType.SkipThisOrchestrationStep,
+                                                                    params string[] values)
+        {
+            if (step.Preconditions == null)
+            {
+                step.Preconditions = new List<Precondition>();
+            }
+            step.Preconditions.Add(new Precondition
+            {
+                Action = actionType,
+                ExecuteActionsIf = executeActionIf,
+                Type = PreconditionType.ClaimEquals,
+                Value = values.ToList()
+            });
+            return step;
+        }
+
+        public static OrchestrationStep WithClaimsExistsPrecondition(this OrchestrationStep step,
+                                                                    bool executeActionIf = true,
+                                                                    PreconditionActionType actionType = PreconditionActionType.SkipThisOrchestrationStep,
+                                                                    params string[] values)
+        {
+            if (step.Preconditions == null)
+            {
+                step.Preconditions = new List<Precondition>();
+            }
+            step.Preconditions.Add(new Precondition
+            {
+                Action = actionType,
+                ExecuteActionsIf = executeActionIf,
+                Type = PreconditionType.ClaimsExist,
+                Value = values.ToList()
+            });
+            return step;
+        }
+
+        public static OrchestrationStep WithClaimsEqualsPrecondition(this OrchestrationStep step,
+                                                                    ClaimType claim, string value)
+        {
+            return WithClaimsEqualsPrecondition(step, new string[] { claim.Id, value });
+        }
+
+        public static OrchestrationStep WithClaimsEqualsPrecondition(this OrchestrationStep step,
+                                                                    params string[] values)
+        {
+            if (step.Preconditions == null)
+            {
+                step.Preconditions = new List<Precondition>();
+            }
+            step.Preconditions.Add(new Precondition
+            {
+                Action = PreconditionActionType.SkipThisOrchestrationStep,
+                ExecuteActionsIf = true,
+                Type = PreconditionType.ClaimEquals,
+                Value = values.ToList()
+            });
+            return step;
+        }
+
+        public static OrchestrationStep WithClaimsExistsPrecondition(this OrchestrationStep step,
+                                                                    params ClaimType[] claims)
+        {
+            return WithClaimsExistsPrecondition(step, claims.Select(c => c.Id).ToArray());
+        }
+
+        public static OrchestrationStep WithClaimsExistsPrecondition(this OrchestrationStep step,
+                                                                    params string[] values)
+        {
+            if (step.Preconditions == null)
+            {
+                step.Preconditions = new List<Precondition>();
+            }
+            step.Preconditions.Add(new Precondition
+            {
+                Action = PreconditionActionType.SkipThisOrchestrationStep,
+                ExecuteActionsIf = true,
+                Type = PreconditionType.ClaimsExist,
+                Value = values.ToList()
+            });
+            return step;
+        }
+
+        public static OrchestrationStep xAddClaimsEqualsPrecondition(this OrchestrationStep step,
+            bool executeActionIf, PreconditionActionType actionType, params string[] values)
+        {
+            if (step.Preconditions == null)
+            {
+                step.Preconditions = new List<Precondition>();
+            }
+            step.Preconditions.Add(new Precondition
+            {
+                Action = actionType,
+                ExecuteActionsIf = executeActionIf,
+                Type = PreconditionType.ClaimEquals,
+                Value = values.ToList()
+            });
             return step;
         }
     }
