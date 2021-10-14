@@ -11,8 +11,8 @@ namespace agileways.b2c.builder.library.common.techProfiles
         {
             get
             {
-                string signatureKey = ConfigurationManager.AppSettings.Get("SignatureKey");
-                string encryptionKey = ConfigurationManager.AppSettings.Get("EncryptionKey");
+                string signatureKey = ConfigurationManager.AppSettings.Get("B2C.PolicyKey.SignatureKey");
+                string encryptionKey = ConfigurationManager.AppSettings.Get("B2C.PolicyKey.EncryptionKey");
                 return new TechnicalProfile
                 {
                     Id = "JwtIssuer",

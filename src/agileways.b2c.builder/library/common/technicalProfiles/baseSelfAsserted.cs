@@ -15,7 +15,7 @@ namespace agileways.b2c.builder.library.common.techProfiles
         {
             get
             {
-                string signatureKey = ConfigurationManager.AppSettings.Get("SignatureKey");
+                string signatureKey = ConfigurationManager.AppSettings.Get("B2C.PolicyKey.SignatureKey");
                 return new TechnicalProfile
                 {
                     Id = "SelfAsserted-Social",

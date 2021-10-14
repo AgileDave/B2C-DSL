@@ -13,24 +13,24 @@ namespace agileways.b2c.builder.library.common.techProfiles
 
         public static TechnicalProfile AadCommon
         {
-            get{
-
-                string signatureKey = ConfigurationManager.AppSettings.Get("SignatureKey"); 
-                return new TechnicalProfile
+            get
             {
-                Id = "AAD-Common",
-                DisplayName = "Azure Active Directory",
-                Protocol = new TechnicalProfileProtocol { Name = ProtocolName.Proprietary, Handler = "Web.TPEngine.Providers.AzureActiveDirectoryProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" },
-                CryptographicKeys = new List<CryptographicKey> {
+                string signatureKey = ConfigurationManager.AppSettings.Get("B2C.PolicyKey.SignatureKey");
+                return new TechnicalProfile
+                {
+                    Id = "AAD-Common",
+                    DisplayName = "Azure Active Directory",
+                    Protocol = new TechnicalProfileProtocol { Name = ProtocolName.Proprietary, Handler = "Web.TPEngine.Providers.AzureActiveDirectoryProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" },
+                    CryptographicKeys = new List<CryptographicKey> {
                     new CryptographicKey { Id = "issuer_secret", StorageReferenceId = signatureKey }
                 },
-                IncludeInSso = false,
-                UseTechnicalProfileForSessionManagement = new TechnicalProfileUseTechnicalProfileForSessionManagement
-                {
-                    ReferenceId = BaseSessionMgtTechnicalProfiles.NoOp.Id
-                }
-            };
-        }
+                    IncludeInSso = false,
+                    UseTechnicalProfileForSessionManagement = new TechnicalProfileUseTechnicalProfileForSessionManagement
+                    {
+                        ReferenceId = BaseSessionMgtTechnicalProfiles.NoOp.Id
+                    }
+                };
+            }
         }
 
         public static TechnicalProfile AadUserWriteUsingAlternativeSecurityId
