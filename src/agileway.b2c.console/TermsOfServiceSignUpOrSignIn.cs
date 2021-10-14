@@ -20,6 +20,7 @@ namespace agileway.b2c.console
         const string CURRENT_TOS_VERSION = "1.0";
 
         public TermsOfServiceSignUpOrSignIn(string policyName, TrustFrameworkPolicy tfpBase) : base(policyName, tfpBase) => this.Build();
+        //public TermsOfServiceSignUpOrSignIn(string policyName, TrustFrameworkPolicy tfpBase) : base(policyName, tfpBase) => this.Build();
 
         public override void Build()
         {

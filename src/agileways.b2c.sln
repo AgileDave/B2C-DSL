@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31702.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "agileways.b2c.builder", "agileways.b2c.builder\agileways.b2c.builder.csproj", "{F0F36B06-C0E7-4FA9-9AD4-53584346087D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "agileway.b2c.console", "agileway.b2c.console\agileway.b2c.console.csproj", "{4BA50326-D9C2-4F62-993A-28B9B9012BDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "agileway.b2c.console", "agileway.b2c.console\agileway.b2c.console.csproj", "{4BA50326-D9C2-4F62-993A-28B9B9012BDD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

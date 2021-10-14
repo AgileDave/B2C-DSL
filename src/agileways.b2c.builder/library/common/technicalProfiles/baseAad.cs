@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Configuration;
 using agileways.b2c.builder.library.common.claims;
 using agileways.b2c.builder.library.common.transformations;
 using agileways.b2c.builder.models.common;
@@ -12,13 +13,16 @@ namespace agileways.b2c.builder.library.common.techProfiles
 
         public static TechnicalProfile AadCommon
         {
-            get => new TechnicalProfile
+            get{
+
+                string signatureKey = ConfigurationManager.AppSettings.Get("SignatureKey"); 
+                return new TechnicalProfile
             {
                 Id = "AAD-Common",
                 DisplayName = "Azure Active Directory",
                 Protocol = new TechnicalProfileProtocol { Name = ProtocolName.Proprietary, Handler = "Web.TPEngine.Providers.AzureActiveDirectoryProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" },
                 CryptographicKeys = new List<CryptographicKey> {
-                    new CryptographicKey { Id = "issuer_secret", StorageReferenceId = "B2C_1A_TokenSigningKeyContainer" }
+                    new CryptographicKey { Id = "issuer_secret", StorageReferenceId = signatureKey }
                 },
                 IncludeInSso = false,
                 UseTechnicalProfileForSessionManagement = new TechnicalProfileUseTechnicalProfileForSessionManagement
@@ -26,6 +30,7 @@ namespace agileways.b2c.builder.library.common.techProfiles
                     ReferenceId = BaseSessionMgtTechnicalProfiles.NoOp.Id
                 }
             };
+        }
         }
 
         public static TechnicalProfile AadUserWriteUsingAlternativeSecurityId

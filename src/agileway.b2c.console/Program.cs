@@ -2,11 +2,14 @@
 using agileways.b2c.builder.library.policies;
 using agileways.b2c.builder.models.policy;
 using System;
+using System.Configuration;
+using System.Collections.Specialized;
 
 namespace agileway.b2c.console
 {
     class Program
     {
+
         private const string ACCOUNT_POLICY_NAME = "B2C_1A_TrustFrameworkBase2";
         private const string TENANT_NAME = "dgtestsb2ctenant.onmicrosoft.com";
         private const string EXTENSIONS_POLICY_NAME = "B2C_1A_TrustFrameworkExtensions2";
@@ -28,9 +31,8 @@ namespace agileway.b2c.console
             string tele = "312-555-1212";
 
             // TODO: Use Graph API to get the keys below
-            string signatureKey = "B2C_1A_dgtestb2csignaturekey";
             string encryptionKey = "B2C_1A_dgtestb2cencryptionkey";
-
+            string signatureKey = "B2C_1A_dgtestb2csignaturekey";
 
             TrustFrameworkPolicy tfbXml = SocialAndLocalAccounts.TrustFrameworkBase(
                 ACCOUNT_POLICY_NAME,
