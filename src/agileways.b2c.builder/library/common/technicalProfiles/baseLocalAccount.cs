@@ -1,5 +1,6 @@
 
 using System.Collections.Generic;
+using System.Configuration;
 using agileways.b2c.builder.library.common.claims;
 using agileways.b2c.builder.library.common.contentDefinitions;
 using agileways.b2c.builder.models.common;
@@ -52,27 +53,30 @@ namespace agileways.b2c.builder.library.common.techProfiles
 
         public static TechnicalProfile LocalAccountSignUpWithLogonEmail
         {
-            get => new TechnicalProfile
+            get
             {
-                Id = "LocalAccountSignUpWithLogonEmail",
-                DisplayName = "Email signup",
-                Protocol = new TechnicalProfileProtocol
+                string signatureKey = ConfigurationManager.AppSettings.Get("B2C.PolicyKey.SignatureKey");
+                return new TechnicalProfile
                 {
-                    Name = ProtocolName.Proprietary,
-                    Handler = "Web.TPEngine.Providers.SelfAssertedAttributeProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
-                },
-                Metadata = new List<metadataItem> {
+                    Id = "LocalAccountSignUpWithLogonEmail",
+                    DisplayName = "Email signup",
+                    Protocol = new TechnicalProfileProtocol
+                    {
+                        Name = ProtocolName.Proprietary,
+                        Handler = "Web.TPEngine.Providers.SelfAssertedAttributeProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
+                    },
+                    Metadata = new List<metadataItem> {
                     new metadataItem { Key = "IpAddressClaimReferenceId", Value = "IpAddress" },
                     new metadataItem { Key = "ContentDefinitionReferenceId", Value = BaseContentDefinitions.ApiLocalAccountSignUp.Id },
                     new metadataItem { Key = "language.button_continue", Value = "Create" },
                 },
-                CryptographicKeys = new List<CryptographicKey> {
-                    new CryptographicKey { Id = "issuer_secret", StorageReferenceId = "B2C_1A_TokenSigningKeyContainer" }
+                    CryptographicKeys = new List<CryptographicKey> {
+                    new CryptographicKey { Id = "issuer_secret", StorageReferenceId = signatureKey }
                 },
-                InputClaims = new List<ClaimTypeReference> {
+                    InputClaims = new List<ClaimTypeReference> {
                     new ClaimTypeReference { ClaimTypeReferenceId = BaseClaims.Email.Id }
                 },
-                OutputClaims = new List<ClaimTypeReference> {
+                    OutputClaims = new List<ClaimTypeReference> {
                     new ClaimTypeReference { ClaimTypeReferenceId= BaseClaims.ObjectId.Id },
                     new ClaimTypeReference { ClaimTypeReferenceId= BaseClaims.Email.Id, PartnerClaimType="Verified.Email", Required = true },
                     new ClaimTypeReference { ClaimTypeReferenceId= BaseClaims.NewPassword.Id, Required = true },
@@ -84,14 +88,15 @@ namespace agileways.b2c.builder.library.common.techProfiles
                     new ClaimTypeReference { ClaimTypeReferenceId= BaseClaims.GivenName.Id, PartnerClaimType="given_name" },
                     new ClaimTypeReference { ClaimTypeReferenceId= BaseClaims.Surname.Id, PartnerClaimType="family_name" },
                 },
-                ValidationTechnicalProfiles = new List<ValidationTechnicalProfile> {
+                    ValidationTechnicalProfiles = new List<ValidationTechnicalProfile> {
                     new ValidationTechnicalProfile { ReferenceId = BaseAadTechnicalProfiles.AadUserWriteUsingLogonEmail.Id }
                 },
-                UseTechnicalProfileForSessionManagement = new TechnicalProfileUseTechnicalProfileForSessionManagement
-                {
-                    ReferenceId = BaseSessionMgtTechnicalProfiles.Aad.Id
-                }
-            };
+                    UseTechnicalProfileForSessionManagement = new TechnicalProfileUseTechnicalProfileForSessionManagement
+                    {
+                        ReferenceId = BaseSessionMgtTechnicalProfiles.Aad.Id
+                    }
+                };
+            }
         }
 
         public static TechnicalProfile SelfAssertedLocalAccountSigninEmail
@@ -132,64 +137,72 @@ namespace agileways.b2c.builder.library.common.techProfiles
 
         public static TechnicalProfile LocalAccountDiscoveryUsingEmailAddress
         {
-            get => new TechnicalProfile
+            get
             {
-                Id = "LocalAccountDiscoveryUsingEmailAddress",
-                DisplayName = "Reset password using email address",
-                Protocol = new TechnicalProfileProtocol
+                string signatureKey = ConfigurationManager.AppSettings.Get("B2C.PolicyKey.SignatureKey");
+                return new TechnicalProfile
                 {
-                    Name = ProtocolName.Proprietary,
-                    Handler = "Web.TPEngine.Providers.SelfAssertedAttributeProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
-                },
-                Metadata = new List<metadataItem> {
+                    Id = "LocalAccountDiscoveryUsingEmailAddress",
+                    DisplayName = "Reset password using email address",
+                    Protocol = new TechnicalProfileProtocol
+                    {
+                        Name = ProtocolName.Proprietary,
+                        Handler = "Web.TPEngine.Providers.SelfAssertedAttributeProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
+                    },
+                    Metadata = new List<metadataItem> {
                     new metadataItem{Key = "IpAddressClaimReferenceId", Value = "IpAddress" },
                     new metadataItem{Key = "ContentDefinitionReferenceId", Value = BaseContentDefinitions.ApiLocalAccountPasswordReset.Id },
                     new metadataItem{Key = "UserMessageIfClaimsTransformationBooleanValueIsNotEqual", Value = "Your account has been locked. Contact your support person to unlock it, then try again." },
                 },
-                CryptographicKeys = new List<CryptographicKey> {
-                    new CryptographicKey { Id = "issuer_secret", StorageReferenceId = "B2C_1A_TokenSigningKeyContainer" }
+                    CryptographicKeys = new List<CryptographicKey> {
+                    new CryptographicKey { Id = "issuer_secret", StorageReferenceId = signatureKey }
                 },
-                IncludeInSso = false,
-                OutputClaims = new List<ClaimTypeReference> {
+                    IncludeInSso = false,
+                    OutputClaims = new List<ClaimTypeReference> {
                     new ClaimTypeReference { ClaimTypeReferenceId = BaseClaims.Email.Id, PartnerClaimType = "Verified.Email", Required = true },
                     new ClaimTypeReference { ClaimTypeReferenceId = BaseClaims.ObjectId.Id },
                     new ClaimTypeReference { ClaimTypeReferenceId = BaseClaims.UserPrincipalName.Id },
                     new ClaimTypeReference { ClaimTypeReferenceId = BaseClaims.AuthenticationSource.Id },
                 },
-                ValidationTechnicalProfiles = new List<ValidationTechnicalProfile> {
+                    ValidationTechnicalProfiles = new List<ValidationTechnicalProfile> {
                     new ValidationTechnicalProfile { ReferenceId = BaseAadTechnicalProfiles.AadUserReadUsingEmailAddress.Id }
                 }
-            };
+                };
+            }
         }
 
         public static TechnicalProfile LocalAccountWritePasswordUsingObjectId
         {
-            get => new TechnicalProfile
+            get
             {
-                Id = "LocalAccountWritePasswordUsingObjectId",
-                DisplayName = "Change password (username)",
-                Protocol = new TechnicalProfileProtocol
+                string signatureKey = ConfigurationManager.AppSettings.Get("B2C.PolicyKey.SignatureKey");
+                return new TechnicalProfile
                 {
-                    Name = ProtocolName.Proprietary,
-                    Handler = "Web.TPEngine.Providers.SelfAssertedAttributeProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
-                },
-                Metadata = new List<metadataItem> {
+                    Id = "LocalAccountWritePasswordUsingObjectId",
+                    DisplayName = "Change password (username)",
+                    Protocol = new TechnicalProfileProtocol
+                    {
+                        Name = ProtocolName.Proprietary,
+                        Handler = "Web.TPEngine.Providers.SelfAssertedAttributeProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"
+                    },
+                    Metadata = new List<metadataItem> {
                     new metadataItem { Key = "ContentDefinitionReferenceId", Value = BaseContentDefinitions.ApiLocalAccountPasswordReset.Id }
                 },
-                CryptographicKeys = new List<CryptographicKey> {
-                    new CryptographicKey { Id = "issuer_secret", StorageReferenceId = "B2C_1A_TokenSigningKeyContainer" }
+                    CryptographicKeys = new List<CryptographicKey> {
+                    new CryptographicKey { Id = "issuer_secret", StorageReferenceId = signatureKey }
                 },
-                InputClaims = new List<ClaimTypeReference> {
+                    InputClaims = new List<ClaimTypeReference> {
                     new ClaimTypeReference { ClaimTypeReferenceId = BaseClaims.ObjectId.Id }
                 },
-                OutputClaims = new List<ClaimTypeReference> {
+                    OutputClaims = new List<ClaimTypeReference> {
                     new ClaimTypeReference { ClaimTypeReferenceId = BaseClaims.NewPassword.Id, Required = true },
                     new ClaimTypeReference { ClaimTypeReferenceId = BaseClaims.ReenterPassword.Id, Required = true }
                 },
-                ValidationTechnicalProfiles = new List<ValidationTechnicalProfile> {
+                    ValidationTechnicalProfiles = new List<ValidationTechnicalProfile> {
                     new ValidationTechnicalProfile { ReferenceId = BaseAadTechnicalProfiles.AadUserWritePasswordUsingObjectId.Id }
                 }
-            };
+                };
+            }
         }
     }
 }

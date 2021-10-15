@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Configuration;
 using agileways.b2c.builder.library.common.claims;
 using agileways.b2c.builder.library.common.transformations;
 using agileways.b2c.builder.models.common;
@@ -12,20 +13,24 @@ namespace agileways.b2c.builder.library.common.techProfiles
 
         public static TechnicalProfile AadCommon
         {
-            get => new TechnicalProfile
+            get
             {
-                Id = "AAD-Common",
-                DisplayName = "Azure Active Directory",
-                Protocol = new TechnicalProfileProtocol { Name = ProtocolName.Proprietary, Handler = "Web.TPEngine.Providers.AzureActiveDirectoryProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" },
-                CryptographicKeys = new List<CryptographicKey> {
-                    new CryptographicKey { Id = "issuer_secret", StorageReferenceId = "B2C_1A_TokenSigningKeyContainer" }
-                },
-                IncludeInSso = false,
-                UseTechnicalProfileForSessionManagement = new TechnicalProfileUseTechnicalProfileForSessionManagement
+                string signatureKey = ConfigurationManager.AppSettings.Get("B2C.PolicyKey.SignatureKey");
+                return new TechnicalProfile
                 {
-                    ReferenceId = BaseSessionMgtTechnicalProfiles.NoOp.Id
-                }
-            };
+                    Id = "AAD-Common",
+                    DisplayName = "Azure Active Directory",
+                    Protocol = new TechnicalProfileProtocol { Name = ProtocolName.Proprietary, Handler = "Web.TPEngine.Providers.AzureActiveDirectoryProvider, Web.TPEngine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" },
+                    CryptographicKeys = new List<CryptographicKey> {
+                    new CryptographicKey { Id = "issuer_secret", StorageReferenceId = signatureKey }
+                },
+                    IncludeInSso = false,
+                    UseTechnicalProfileForSessionManagement = new TechnicalProfileUseTechnicalProfileForSessionManagement
+                    {
+                        ReferenceId = BaseSessionMgtTechnicalProfiles.NoOp.Id
+                    }
+                };
+            }
         }
 
         public static TechnicalProfile AadUserWriteUsingAlternativeSecurityId
