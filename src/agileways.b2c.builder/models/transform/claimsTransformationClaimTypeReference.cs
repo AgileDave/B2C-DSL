@@ -13,12 +13,20 @@ namespace agileways.b2c.builder.models.transform
         /// <remarks/>
         [XmlAttribute]
         public string TransformationClaimType { get; set; }
+        [XmlIgnoreAttribute()]
+        public bool TransformationClaimTypeSpecified { get; set; }
 
         public ClaimsTransformationClaimTypeReference() { }
+        public ClaimsTransformationClaimTypeReference(string id)
+        {
+            ClaimTypeReferenceId = id;
+            TransformationClaimTypeSpecified = false;
+        }
         public ClaimsTransformationClaimTypeReference(string id, string claimtype)
         {
             ClaimTypeReferenceId = id;
             TransformationClaimType = claimtype;
+            TransformationClaimTypeSpecified = true;
         }
     }
 }

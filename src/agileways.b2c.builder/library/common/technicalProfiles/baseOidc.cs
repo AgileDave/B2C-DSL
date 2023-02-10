@@ -11,5 +11,6 @@ namespace agileways.b2c.builder.library.common.techProfiles
         UserPolicyInRedirectUri,
         DiscoverMetadataByTokenIssuer,
         ValidTokenIssuerPrefixes,
+        IncludeClaimResolvingInClaimsHandling,
     }
 }

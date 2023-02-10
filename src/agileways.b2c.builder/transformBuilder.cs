@@ -59,5 +59,18 @@ namespace agileways.b2c.builder.extensions
             });
             return ct;
         }
+
+        public static ClaimsTransformation ReturnsClaim(this ClaimsTransformation ct, ClaimType claim)
+        {
+            if (ct.OutputClaims == null)
+            {
+                ct.OutputClaims = new List<ClaimsTransformationClaimTypeReference>();
+            }
+
+            ct.OutputClaims.Add(new ClaimsTransformationClaimTypeReference(claim.Id));
+
+            return ct;
+        }
+
     }
 }

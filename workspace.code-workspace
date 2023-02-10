@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "src\\agileways.b2c.builder"
+		},
+		{
+			"path": "src\\agileways.b2c.builder.runner"
+		}
+	],
+	"settings": {}
+}
